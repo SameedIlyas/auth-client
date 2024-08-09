@@ -19,7 +19,7 @@ const Section = ({ number, initial, title, description, imageUrl, align = 'left'
           </div>
           <h3 className="text-3xl md:text-5xl font-primary text-white">{title}</h3>
           <p className="mt-4 text-gray-300 font-secondary text-sm md:text-base">{description}</p>
-          <a href="#" className="text-yellow-500 mt-6 inline-block font-secondary text-sm md:text-base">Read More ➜</a>
+          <a href="/" className="text-yellow-500 mt-6 inline-block font-secondary text-sm md:text-base">Read More ➜</a>
         </div>
       </div>
       <div className="md:w-1/2 mt-6 md:mt-0 flex justify-center">

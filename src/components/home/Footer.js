@@ -21,7 +21,7 @@ const Footer = () => {
           <ul className="space-y-2">
             {['About MNTN', 'Contributors & Writers', 'Write For Us', 'Contact Us', 'Privacy Policy'].map((item) => (
               <li key={item}>
-                <a href="#" className="hover:text-[#E3C78A] text-sm md:text-base hover:cursor-pointer">{item}</a>
+                <a href="/" className="hover:text-[#E3C78A] text-sm md:text-base hover:cursor-pointer">{item}</a>
               </li>
             ))}
           </ul>
@@ -31,7 +31,7 @@ const Footer = () => {
           <ul className="space-y-2">
             {['The Team', 'Jobs', 'Press'].map((item) => (
               <li key={item}>
-                <a href="#" className="hover:text-[#E3C78A] text-sm md:text-base hover:cursor-pointer">{item}</a>
+                <a href="/" className="hover:text-[#E3C78A] text-sm md:text-base hover:cursor-pointer">{item}</a>
               </li>
             ))}
           </ul>
