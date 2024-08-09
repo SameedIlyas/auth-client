@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../navbar/Navbar'; 
+import Navbar from '../navbar/Navbar';
+import { useAuth } from '../../contexts/AuthContext';
 
-const Login = ({ setAuth }) => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { setAuth } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -21,17 +23,15 @@ const Login = ({ setAuth }) => {
     }
   };
 
-  const currentDate = new Date().toISOString().split('T')[0].replace(/-/g, '');
-
   return (
     <div>
-      <Navbar auth={false} setAuth={setAuth} />
+      <Navbar />
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
           <h2 className="text-2xl font-bold mb-6">Login</h2>
           <div className="bg-yellow-100 border border-yellow-300 text-yellow-800 p-4 rounded-lg mb-6">
             <p className="text-sm">
-              Use <strong>{currentDate}</strong> after your base password to login successfully.
+              Use current date using <strong>YYYYMMDD</strong> format after your base password to login successfully.
             </p>
           </div>
           <form onSubmit={handleLogin} className="space-y-4">

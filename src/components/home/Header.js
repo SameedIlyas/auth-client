@@ -1,11 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext'; // Import useAuth
 
 const Header = () => {
   const navigate = useNavigate();
+  const { setAuth } = useAuth(); // Access setAuth from context
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    setAuth(false); // Update auth state
     navigate('/login');
   };
 
