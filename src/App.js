@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import Header from './components/header/Header';
 import Home from './components/home/Home';
+import PublicHome from './components/publichome/PublicHome';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 import { jwtDecode } from 'jwt-decode';
@@ -28,10 +28,9 @@ function App() {
 
   return (
     <div className="App">
-      <Header auth={auth} setAuth={setAuth} />
       <Routes>
-        <Route path="/" element={auth ? <Navigate to="/home" /> : <Navigate to="/login" />} />
-        <Route path="/home" element={auth ? <Home userName={userName} /> : <Navigate to="/login" />} />
+        <Route path="/" element={auth ? <Navigate to="/home" /> : <PublicHome />} />
+        <Route path="/home" element={auth ? <Home userName={userName} /> : <Navigate to="/" />} />
         <Route path="/login" element={auth ? <Navigate to="/home" /> : <Login setAuth={setAuth} />} />
         <Route path="/register" element={auth ? <Navigate to="/home" /> : <Register />} />
       </Routes>

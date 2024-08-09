@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import Navbar from '../navbar/Navbar'; 
 
 const Login = ({ setAuth }) => {
   const [email, setEmail] = useState('');
@@ -23,22 +21,46 @@ const Login = ({ setAuth }) => {
     }
   };
 
+  const currentDate = new Date().toISOString().split('T')[0].replace(/-/g, '');
+
   return (
-    <Container className="login-container">
-      <h2>Login</h2>
-      <Form onSubmit={handleLogin} className="login-form">
-        <Form.Group className="mb-3">
-          <Form.Label>Email:</Form.Label>
-          <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Password:</Form.Label>
-          <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </Form.Group>
-        <Button variant="info" type="submit">Login</Button>
-        {error && <p className="text-danger">{error}</p>}
-      </Form>
-    </Container>
+    <div>
+      <Navbar auth={false} setAuth={setAuth} />
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+        <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+          <h2 className="text-2xl font-bold mb-6">Login</h2>
+          <div className="bg-yellow-100 border border-yellow-300 text-yellow-800 p-4 rounded-lg mb-6">
+            <p className="text-sm">
+              Use <strong>{currentDate}</strong> after your base password to login successfully.
+            </p>
+          </div>
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="block text-gray-700 mb-2">Email:</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-3 py-2 border rounded-lg"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 mb-2">Password:</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-3 py-2 border rounded-lg"
+                required
+              />
+            </div>
+            <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-lg">Login</button>
+            {error && <p className="text-red-500 mt-4">{error}</p>}
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 
