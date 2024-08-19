@@ -1,17 +1,20 @@
 import React from 'react';
-import Header from './Header';
-import Section from './Section';
-import Footer from './Footer';
-import Slider from './Slider';
-import FollowUs from './FollowUs'
+import Header from '../../components/header/Header';
+import Section from '../../components/section/Section';
+import Footer from '../../components/footer/Footer';
+import Slider from '../../components/slider/Slider';
+import FollowUs from '../../components/follow/FollowUs'
+import BackToTop from '../../components/backToTop/BacktoTop';
 
 const Home = () => {
+
   return (
     <div className='bg-dark-blue text-white'>
       <Header />
       <div className="p-[80px]">
         <Slider />
         <FollowUs />
+        <BackToTop />
         <Section 
           number="01"
           initial="Get Started"
@@ -22,7 +25,7 @@ const Home = () => {
         />
         <Section 
           number="02"
-          initial = "Hiking essentials"
+          initial="Hiking essentials"
           title="Picking the right Hiking Gear!"
           description="The nice thing about beginning hiking is that you don’t really need any special gear, you can probably get away with things you already have. Let’s start with clothing. A typical mistake hiking beginners make is wearing jeans and regular clothes, which will get heavy and chafe wif they get sweaty or wet."
           imageUrl="/02.png"

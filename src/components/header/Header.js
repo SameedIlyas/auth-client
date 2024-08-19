@@ -1,15 +1,23 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext'; // Import useAuth
+import { useAuth } from '../../contexts/AuthContext'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
   const navigate = useNavigate();
-  const { setAuth } = useAuth(); // Access setAuth from context
+  const { auth, setAuth, userName, setUserName } = useAuth(); 
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    setAuth(false); // Update auth state
+    setAuth(false);
+    setUserName(''); 
     navigate('/login');
+  };
+
+  const scrollToContent = () => {
+    const headerHeight = document.querySelector('header').offsetHeight;
+    window.scrollTo({ top: headerHeight, behavior: 'smooth' });
   };
 
   return (
@@ -19,12 +27,27 @@ const Header = () => {
         <nav className="flex flex-col md:flex-row items-center justify-between">
           <div className="text-white font-primary text-2xl md:text-4xl">MNTN</div>
           <ul className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-white font-secondary text-lg md:text-xl">
-            {['Equipment', 'About us', 'Blog'].map((item) => (
-              <li key={item} className="hover:text-yellow-400 cursor-pointer relative group">
-                {item}
-                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-              </li>
-            ))}
+            <li 
+              className="hover:text-yellow-400 cursor-pointer relative group" 
+              onClick={() => navigate('/equipment')}
+            >
+              Equipment
+              <span className="absolute left-0 bottom-0 w-full h-0.5 bg-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+            </li>
+            <li 
+              className="hover:text-yellow-400 cursor-pointer relative group" 
+              onClick={() => navigate('/about')}
+            >
+              About us
+              <span className="absolute left-0 bottom-0 w-full h-0.5 bg-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+            </li>
+            <li 
+              className="hover:text-yellow-400 cursor-pointer relative group" 
+              onClick={() => navigate('/blog')}
+            >
+              Blog
+              <span className="absolute left-0 bottom-0 w-full h-0.5 bg-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+            </li>
           </ul>
           <button 
             onClick={handleLogout} 
@@ -32,7 +55,7 @@ const Header = () => {
             style={{ fontSize: '17px' }}
           >
             <img src="/user.png" alt="User Icon" className="w-6 h-6 mr-2" />
-            Account
+            {auth ? userName : 'Account'}
             <span className="absolute left-0 bottom-0 w-full h-0.5 bg-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
           </button>
         </nav>
@@ -48,7 +71,13 @@ const Header = () => {
               Be Prepared For The<br />
               Mountains And Beyond!
             </h1>
-            <p className="mt-4 font-secondary text-sm md:text-lg">scroll down ⬇</p>
+            <button 
+              onClick={scrollToContent} 
+              className="mt-4 font-secondary text-sm md:text-lg cursor-pointer flex items-center"
+            >
+              <span className="hover:underline">Scroll Down</span> {/* Text wrapped in span for hover effect */}
+              <FontAwesomeIcon icon={faArrowDown} className="ml-2" />
+            </button>
           </div>
         </div>
       </div>
